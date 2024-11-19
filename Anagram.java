@@ -67,7 +67,7 @@ public class Anagram {
 		if (str.length() <= 1) return str; 
 		str = preProcess(str);
 		String newStr = "";
-		itn len = str.length()
+		int len = str.length();
 		
 		// we go over all of str and make random indexes which
 		// are unique to access characters from
