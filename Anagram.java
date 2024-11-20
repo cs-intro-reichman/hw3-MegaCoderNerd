@@ -30,19 +30,15 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
-		// if not equal in length after processing, they cannot be anagrams
-		if (str1.length() != str2.length()) return false;
-		
+
 		// nested loop going over all characters.
 		// we are checking that they have the same amount of each
 		for (int i = 0; i < str1.length(); i++){
 			char currChar = str1.charAt(i);
-			if (currChar == ' ') { // Ignore spaces
-				continue;
-			}
 			// we store the index to use to find all other instances of the char
 			int index = -1;
 			for (int j = 0; j < str2.length(); j++){
+				if (currChar == ' ') break;
 				index = str2.indexOf(currChar,index+1);
 				// if the character doesn't exist in the other string
 				// we need to check no more.
