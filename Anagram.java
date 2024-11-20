@@ -67,7 +67,7 @@ public class Anagram {
 		str = str.toLowerCase();
 		// making new variables one which we return and is the edited string
 		// and one which is all the characters we want to remain (alphabet only)
-		String acceptedChars = "abcdefghijklmnopqrstuvwxyz";
+		String acceptedChars = "abcdefghijklmnopqrstuvwxyz ";
 		String editedStr = "";
 		// going over all the characters and only add those which are accepted
 		// to the processed string
