@@ -1,14 +1,94 @@
 {
   "tests": [
     {
-      "name": "name",
-      "setup": "java file of test",
-      "run": "run command",
-      "input": "input",
-      "output": "output",
+      "name": "LoanCalc Test with Loan Sum 100000, Interest Rate 3%, and Periods 12",
+      "setup": "javac LoanCalc.java",
+      "run": "java LoanCalc 100000 3 12",
+      "input": "",
+      "output": "Loan = 100000.0, interest rate = 3.0%, periods = 12\n\nPeriodical payment, using brute force: 9753\nnumber of iterations: 1420268\n\nPeriodical payment, using bi-section search: 9753\nnumber of iterations: 27",
       "comparison": "exact",
       "timeout": 10,
-      "points": 2
-    }
+      "points": 5
+      },
+      {
+      "name": "LoanCalc Test with Loan Sum 75000, Interest Rate 4%, and Periods 24",
+      "setup": "javac LoanCalc.java",
+      "run": "java LoanCalc 75000 4 24",
+      "input": "",
+      "output": "Loan = 75000.0, interest rate = 4.0%, periods = 24\n\nPeriodical payment, using brute force: 4729\nnumber of iterations: 1604820\n\nPeriodical payment, using bi-section search: 4729\nnumber of iterations: 27",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 5
+      },
+      {
+      "name": "LoanCalc Test with Loan Sum 50000, Interest Rate 5%, and Periods 36",
+      "setup": "javac LoanCalc.java",
+      "run": "java LoanCalc 50000 5 36",
+      "input": "",
+      "output": "Loan = 50000.0, interest rate = 5.0%, periods = 36\n\nPeriodical payment, using brute force: 2877\nnumber of iterations: 1488943\n\nPeriodical payment, using bi-section search: 2877\nnumber of iterations: 26",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+      },
+      {
+      "name": "LoanCalc Test with Loan Sum 120000, Interest Rate 3.5%, and Periods 60",
+      "setup": "javac LoanCalc.java",
+      "run": "java LoanCalc 120000 3.5 60",
+      "input": "",
+      "output": "Loan = 120000.0, interest rate = 3.5%, periods = 60\n\nPeriodical payment, using brute force: 4647\nnumber of iterations: 2647957\n\nPeriodical payment, using bi-section search: 4647\nnumber of iterations: 27",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+      },
+      {
+        "name": "Basic Algebra Operations (plus, minus, times)",
+        "setup": "javac TestAlgebra.java Algebra.java",
+        "run": "java TestAlgebra",
+        "input": "",
+        "output": "\nTesting plus operations:\nTest 1 (basic addition): PASS\nTest 2 (zero addition): PASS\nTest 3 (negative numbers): PASS\nTest 4 (large numbers): PASS\nTest 5 (negative result): PASS\nTest 6 (max value): PASS",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Advanced Algebra Operations (power, division, modulo)",
+        "setup": "javac TestAlgebra.java Algebra.java",
+        "run": "java TestAlgebra",
+        "input": "",
+        "output": "\nTesting power operations:\nTest 1 (basic power): PASS\nTest 2 (zero exponent): PASS\nTest 3 (zero base): PASS\nTest 4 (identity): PASS\nTest 5 (power of 2): PASS\nTest 6 (negative base): PASS",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Square Root and Forbidden Operators",
+        "setup": "javac TestAlgebra.java Algebra.java",
+        "run": "java TestAlgebra",
+        "input": "",
+        "output": "\nTesting square root operations:\nTest 1 (perfect square): PASS\nTest 2 (zero): PASS\nTest 3 (one): PASS\nTest 4 (large perfect square): PASS\nTest 5 (floor value): PASS\nTest 6 (power of 10): PASS\n\nTesting forbidden operators:\nTest 1 (no forbidden operators): PASS",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Basic Anagram Operations",
+        "setup": "javac TestAnagram.java Anagram.java",
+        "run": "java TestAnagram",
+        "input": "",
+        "output": "\nTesting isAnagram method:\nTest 1 (basic anagram): PASS\nTest 2 (different lengths): PASS\nTest 4 (empty strings): PASS\nTest 5 (complex anagram): PASS\nTest 6 (case sensitivity): PASS",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 20
+      },
+      {
+        "name": "Advanced Anagram Operations",
+        "setup": "javac TestAnagram.java Anagram.java",
+        "run": "java TestAnagram",
+        "input": "",
+        "output": "\nTesting preProcess method:\nTest 1 (simple lowercase): PASS\nTest 2 (preserve spaces): PASS\nTest 3 (case conversion): PASS\nTest 4 (empty string): PASS\n\nTesting randomAnagram method:\nTest 1 (is anagram): PASS\nTest 2 (same length): PASS\nTest 3 (randomness): PASS",
+        "comparison": "included",
+        "timeout": 10,
+        "points": 20
+      }
   ]
 }
