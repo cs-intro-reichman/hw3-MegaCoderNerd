@@ -47,8 +47,13 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int product = 0;
+        // we call plus, x2 times to do this operation
+		for (int i = 0; i < Math.abs(x2); i++) product = plus(product, x1);
+
+		// If x2 is negative we will just inverse the result
+		if (x2 < 0) product = minus(0, product);
+		return product;
 	}
 
 	// Returns x^n (for n >= 0)
