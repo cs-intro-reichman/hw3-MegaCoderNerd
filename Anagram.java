@@ -7,7 +7,7 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
-
+		System.out.println(isAnagram("str", "res")); // False
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -31,14 +31,35 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
+		// if not equal in length after processing, they cannot be anagrams
 		if (str1.length() != str2.length()) return false;
+
+		// nested loop going over all characters.
+		// we are checking that they have the same amount of each
 		for (int i = 0; i < str1.length(); i++){
-			char curr = str1.charAt(i);
-			if (str2.indexOf(curr, i) == -1) return false;
+			char currChar = str1.charAt(i);
+			// we store the index to use to find all other instances of the char
+			int index = -1;
+			for (int j = 0; j < str2.length(); j++){
+				index = str2.indexOf(currChar,index+1);
+				// if the character doesn't exist in the other string
+				// we need to check no more.
+				if (index == -1 && j == 0){
+					return false;
+				}else if (index == -1){
+					// if the character doesn't exist in the other string,
+					// it can't be an anagram so we break the loop
+					if (str1.indexOf(currChar, i+1) == -1) break;
+					return false;
+				}
+				break;
+
+			}
 		}
 		return true;
 	}
-	   
+
+
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
@@ -46,8 +67,8 @@ public class Anagram {
 		// turning str to undercase letters
 		str = str.toLowerCase();
 		// making new variables one which we return and is the edited string
-		// and one which is all the characters we want to remain (spaces and alphabet)
-		String acceptedChars = "abcdefghijklmnopqrstuvwxyz ";
+		// and one which is all the characters we want to remain (alphabet only)
+		String acceptedChars = "abcdefghijklmnopqrstuvwxyz";
 		String editedStr = "";
 		// going over all the characters and only add those which are accepted
 		// to the processed string
@@ -65,16 +86,28 @@ public class Anagram {
 	public static String randomAnagram(String str) {
 		// no other anagram if the string is empty or only one character
 		if (str.length() <= 1) return str; 
+		
+		// pre-process the string to remove all non-alphabetic characters
 		str = preProcess(str);
+		
 		String newStr = "";
+		
+		// the length of the string
 		int len = str.length();
 		
-		// we go over all of str and make random indexes which
-		// are unique to access characters from
+		// the string that we will be taking characters from
+		String temp = str;
+		
+		// generate the anagram
 		for (int i = 0; i < len; i++){
-			int j = (int) Math.min((Math.random()*str.length() + i), str.length()-i-1);
-			newStr += str.charAt(j+i);
-			//str.replace(str.charAt(j+i),"")
+			// get a random location in the string
+			int randLocation = (int) (Math.random() * (temp.length()));
+			char currChar = temp.charAt(randLocation);
+			newStr += currChar;
+			// remove the character from the original string
+			// by replacing it's first instance by an empty string
+			temp = temp.replaceFirst((String) ""+currChar, "");
+			
 		}
 		return newStr;
 	}
