@@ -63,14 +63,51 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	private static String preProcess(String str) {
-		// Replace the following statement with your code
-		return str;
+		// turning str to undercase letters
+		str = str.toLowerCase();
+		// making new variables one which we return and is the edited string
+		// and one which is all the characters we want to remain (alphabet only)
+		String acceptedChars = "abcdefghijklmnopqrstuvwxyz";
+		String editedStr = "";
+		// going over all the characters and only add those which are accepted
+		// to the processed string
+		for (int i=0; i < str.length(); i++){
+			char curr = str.charAt(i);
+			if (acceptedChars.indexOf(curr) != -1){
+				editedStr += curr;
+			}
+		}
+		return editedStr;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return str;
+		// no other anagram if the string is empty or only one character
+		if (str.length() <= 1) return str; 
+		
+		// pre-process the string to remove all non-alphabetic characters
+		str = preProcess(str);
+		
+		String newStr = "";
+		
+		// the length of the string
+		int len = str.length();
+		
+		// the string that we will be taking characters from
+		String temp = str;
+		
+		// generate the anagram
+		for (int i = 0; i < len; i++){
+			// get a random location in the string
+			int randLocation = (int) (Math.random() * (temp.length()));
+			char currChar = temp.charAt(randLocation);
+			newStr += currChar;
+			// remove the character from the original string
+			// by replacing it's first instance by an empty string
+			temp = temp.replaceFirst((String) ""+currChar, "");
+			
+		}
+		return newStr;
 	}
 }
