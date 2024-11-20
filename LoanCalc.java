@@ -49,8 +49,18 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-		return 0;
+    	double approximation = 0;
+		// we need a small enough increment the smaller the better
+		// but also the slower it is
+		double increment = epsilon / 10;
+		
+		// normal brute force solution but the endBalance for the
+		// approximated payments is the thing we check
+    	while (Math.abs(endBalance(loan, rate, n, approximation)) >= epsilon) {
+			approximation += increment;
+			iterationCounter++;
+		}
+		return approximation;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
