@@ -14,7 +14,8 @@ public class Algebra {
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
    		System.out.println(div(12,3));   // 12 / 3    
-   		System.out.println(div(5,5));    // 5 / 5  
+		System.out.println("hello");
+   		System.out.println(div(-5,1));    // 5 / 5  
    		System.out.println(div(25,7));   // 25 / 7
    		System.out.println(mod(25,7));   // 25 % 7
    		System.out.println(mod(120,6));  // 120 % 6    
@@ -71,21 +72,17 @@ public class Algebra {
 		if (x2 == 0) return 0;
 		// so no overwriting will be done to x1
         int temp = Math.abs(x1);
+        int sign = (x1 < 0) == (x2 < 0) ? 1 : -1;
 		int product = 0;
 		/*  we will call minus function with x2 until negative (which is the remainder)
 			to get the product itself we will count the amount of iterations it took
 		*/
-		while (temp >= x2){
+		while (temp >= Math.abs(x2)){
 			temp = minus(temp, Math.abs(x2));
 			product++;
 		}
-		/*  as we want the division of negatives if both are negatives
-			they will cancel out otherwise,
-			we must return the inverse of the product */
 
-		if (x2 < 0 || x1 < 0) product = minus(0, product);
-
-		return product;
+		return product * sign;
 	}
 
 	// Returns x1 % x2
