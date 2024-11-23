@@ -69,7 +69,7 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// as we are talking about integers we will just return 0 if x2 is 0
-		if (x2 == 0) return 0;
+		if (x2 == 0) throw new ArithmeticException("Division by zero");
 		// so no overwriting will be done to x1
         int temp = Math.abs(x1);
         int sign = (x1 < 0) == (x2 < 0) ? 1 : -1;
@@ -102,9 +102,7 @@ public class Algebra {
 		// we will use newton raphson as it's the most elegant
 
 		// no negative roots
-		if (x < 0) {
-            return -1;
-        }
+		if (x < 0) throw new ArithmeticException("Root of a negative number");
 
         if (x == 0 || x == 1) {
             return x; // sqrt(0) = 0, sqrt(1) = 1
