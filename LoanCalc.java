@@ -67,8 +67,9 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
 		// we check between 0 and the actual amount of money owed 
-		// we calculate by loan*(1+rate/100)^n as rate is a percentage 
-		double L = 0, H = loan;
+		// we calculate by loan over n as it cannot be less then the amount of payments
+		// and we stop the search at the loan assuming it can not be larger then it
+		double L = loan / n, H = loan;
 		// the approximation is the middle value
 		double approximation = (L + H) / 2.0;
 		// we check the endBalance for every approximation until we get it right
