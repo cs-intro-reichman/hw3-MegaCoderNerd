@@ -18,12 +18,10 @@ public class LoanCalc {
 		System.out.print("\nPeriodical payment, using brute force: ");
 		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
 		System.out.println("number of iterations: " + iterationCounter);
-		iterationCounter = 0;
 		// Computes the periodical payment using bisection search
 		System.out.print("\nPeriodical payment, using bi-section search: ");
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
 		System.out.println("number of iterations: " + iterationCounter);
-		iterationCounter = 0;
 	}
 
 	// Computes the ending balance of a loan, given the loan amount, the periodical
@@ -69,16 +67,16 @@ public class LoanCalc {
 		// we check between 0 and the actual amount of money owed 
 		// we calculate by loan over n as it cannot be less then the amount of payments
 		// and we stop the search at the loan assuming it can not be larger then it
+		iterationCounter = 0;
 		double L = loan / n, H = loan;
 		// the approximation is the middle value
 		double approximation = (L + H) / 2.0;
-		// we check the endBalance for every approximation until we get it right
-		while (Math.abs(endBalance(loan,rate,n,approximation)) >= epsilon) {
+		// we check if we got to epsilon
+		while (H-L > epsilon) {
 			// if there's still some of the loan left we need to increase payments
-			if (endBalance(loan, rate, n, approximation) > 0){
+			if (endBalance(loan, rate, n, approximation) * endBalance(loan, rate, n, L) > 0){
 				L = approximation;
-			}
-			else{
+			}else{
 				// the payment must be too big if we got here as if the 
 				// end balance is zero we would've exited already
 				H = approximation;
